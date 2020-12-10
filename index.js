@@ -1,0 +1,42 @@
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
+ctx.canvas.width = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+if (ctx.canvas) {
+  ctx.fillStyle = 'LightGray'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  console.log("drawn")
+}
+
+import { Snake } from './snake.js'
+import { shift, space, z } from './buttons.js'
+import { fruit } from './fruit.js'
+import { drawEnemies } from './enemy.js'
+import { display } from './display.js'
+export const snake = new Snake()
+
+shift.set();
+space.set();
+z.set();
+setInterval(display.calcTotTime.bind(display), 1000);
+
+function update(){
+  ctx.fillStyle = 'LightGray'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  snake.update(ctx)
+  shift.move(snake.num)
+  shift.draw(ctx)
+  space.move()
+  space.draw(ctx)
+  z.ability()
+  z.move()
+  z.draw(ctx)
+  fruit.pos();
+  fruit.draw(ctx)
+  drawEnemies(ctx, snake.num)
+  display.score(ctx, snake.num)
+  display.color(ctx)
+  display.time(ctx)
+  window.requestAnimationFrame(update)
+}
+window.requestAnimationFrame(update)

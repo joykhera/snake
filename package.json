@@ -1,0 +1,16 @@
+{
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "./node_modules/.bin/serve",
+    "standard": "./node_modules/.bin/standard --fix"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^11.3.2",
+    "standard": "^16.0.3"
+  }
+}
