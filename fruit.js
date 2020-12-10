@@ -1,9 +1,16 @@
 import { enemies } from './enemy.js'
-
-export const fruit = {
+const imgs = {
   apple: new Image(),
   banana: new Image(),
-  orange: new Image(),
+  orange: new Image()
+}
+imgs.apple.src = 'https://cdn2.vectorstock.com/i/1000x1000/56/11/fresh-red-apple-transparent-background-vector-22385611.jpg'
+imgs.banana.src = 'https://toppng.com/uploads/preview/banana-png-image-banana-with-no-background-11563269485bxfxxdzfxt.png'
+imgs.orange.src = 'https://p1.hiclipart.com/preview/278/342/572/fruit-orange-fruit-png-clipart.jpg'
+export const fruit = {
+  apple: imgs.apple,
+  banana: imgs.banana,
+  orange: imgs.orange,
   x: Math.random() * (canvas.width),
   y: Math.random() * (canvas.height),
   size: 40,
@@ -42,9 +49,6 @@ export const fruit = {
   },
 
   draw (ctx) {
-    this.apple.src = 'https://cdn2.vectorstock.com/i/1000x1000/56/11/fresh-red-apple-transparent-background-vector-22385611.jpg',
-    this.banana.src = 'https://toppng.com/uploads/preview/banana-png-image-banana-with-no-background-11563269485bxfxxdzfxt.png',
-    this.orange.src = 'https://p1.hiclipart.com/preview/278/342/572/fruit-orange-fruit-png-clipart.jpg',
     ctx.drawImage(this.chosen, this.x, this.y, this.size, this.size)
   }
 }

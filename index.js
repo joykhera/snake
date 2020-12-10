@@ -1,12 +1,17 @@
-let canvas = document.getElementById('canvas');
+let canvas = (() => {
+    let _ = document.createElement("canvas")
+    _ = document.getElementById('canvas')
+    return _ })()
 let ctx = canvas.getContext('2d');
-ctx.canvas.width = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
+ctx.canvas.width = window.innerWidth * devicePixelRatio;
+ctx.canvas.height = window.innerHeight * devicePixelRatio;
+
 if (ctx.canvas) {
-  ctx.fillStyle = 'LightGray'
+  ctx.fillStyle = 'lightgrey'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   console.log("drawn")
 }
+else console.log("no drawn")
 
 import { Snake } from './snake.js'
 import { shift, space, z } from './buttons.js'
@@ -21,7 +26,7 @@ z.set();
 setInterval(display.calcTotTime.bind(display), 1000);
 
 function update(){
-  ctx.fillStyle = 'LightGray'
+  ctx.fillStyle = 'lightgrey'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   snake.update(ctx)
   shift.move(snake.num)
@@ -39,4 +44,4 @@ function update(){
   display.time(ctx)
   window.requestAnimationFrame(update)
 }
-window.requestAnimationFrame(update)
+update()
