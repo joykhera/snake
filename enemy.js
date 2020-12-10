@@ -1,9 +1,10 @@
 import { fruit } from './fruit.js'
 import { snake } from './index.js'
-
+const r = new Image()
+r.src = "rock.jpg"
 export class Enemy {
   constructor () {
-    this.rock = new Image()
+    this.rock = r
     this.x = Math.random() * (canvas.width - fruit.size)
     this.y = Math.random() * (canvas.height - fruit.size)
     this.size = fruit.size
@@ -11,7 +12,7 @@ export class Enemy {
   }
 
   draw (ctx) {
-    this.rock.src = 'rock.jpg'
+    // this.rock.src = 'rock.jpg'
     ctx.drawImage(this.rock, this.x, this.y, this.size, this.size)
   }
 
