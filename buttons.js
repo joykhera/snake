@@ -34,6 +34,8 @@ export const shift = {
 
   draw (ctx) {
     ctx.fillStyle = 'black'
+    ctx.strokeStyle = 'black'
+    ctx.lineWidth = this.borderSize
     ctx.font = this.sizeX / 2 + 'px Arial'
     ctx.fillText('Shift', this.x, this.y - this.sizeX / 4)
     ctx.fillStyle = 'orange'
@@ -100,6 +102,7 @@ export const z = {
   grow: false,
   collisionCheck1: false,
   collisionCheck2: false,
+  splicedNum: 0,
 
   set(){
     this.y = shift.y - 100
@@ -172,11 +175,14 @@ export const z = {
         if ((centerEnemyX * centerEnemyX) + (centerEnemyY * centerEnemyY) < 
         (this.abilitySize * this.abilitySize)) this.collisionCheck2 = true
         else this.collisionCheck2 = false
+
         if (this.collisionCheck1 && this.collisionCheck2) {
           enemies.splice(i, 1)
+          --i
+          this.splicedNum++
           console.log("hit")
         }
       }
     }
   },
-}    
+}

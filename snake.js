@@ -13,6 +13,7 @@ export class Snake {
     this.small = false
     this.circles = []
     this.path = []
+    this.colorAngle = Math.random() * 359 + 1
     this.colors = []
     this.eating = false
     this.abilitySize = 0
@@ -30,9 +31,9 @@ export class Snake {
     this.small = pressedKeys.space
     this.move()
     this.color()
+    this.follow()
     this.draw(ctx)
     this.eyes(ctx)
-    this.follow()
     this.collision()
     this.eat()
     this.ability(ctx)
@@ -81,11 +82,11 @@ export class Snake {
 
   color(){
     if(this.eating){
-      for (let i = 1; i < this.circles.length; i++) {
-        this.circles[this.circles.length - 1].color = `hsl(${6 * (Math.floor(Math.random() * 60))}, 100%, 50%)`
-        if (this.circles[this.circles.length - 1].color == this.circles[i - 1].color){
-          this.circles[this.circles.length - 1].color = `hsl(${6 * (Math.floor(Math.random() * 60))}, 100%, 50%)`
-        }
+      this.colorAngle = Math.random() * 359 + 1
+        this.circles[this.circles.length - 1].color = `hsl(${this.colorAngle}, 100%, 50%)`
+        while ((this.circles[this.circles.length - 1].colorAngle <= this.circles[this.circles.length - 2].colorAngle + 20) &&
+        ((this.circles[this.circles.length - 1].colorAngle >= this.circles[this.circles.length - 2].colorAngle - 20))){
+          this.circles[this.circles.length - 1].colorAngle = Math.random() * 359 + 1
       }
     }  
   }
@@ -94,6 +95,15 @@ export class Snake {
     for (let i = this.circles.length - 1; i >= 0; i--) {
       this.circles[i].size = this.small ? 10 : 20
       this.circles[i].draw(ctx)
+      if (this.circles.length >= 2 && i >= 1){
+        ctx.beginPath();
+        ctx.moveTo(this.circles[i].x, this.circles[i].y);
+        ctx.lineTo(this.circles[i - 1].x, this.circles[i - 1].y);
+        ctx.lineWidth = this.circles[i].size * 2;
+        ctx.strokeStyle = this.circles[i].color
+        ctx.stroke();
+        ctx.closePath();
+      }
     }
   }
 
@@ -102,28 +112,16 @@ export class Snake {
       x: this.circles[0].x,
       y: this.circles[0].y,
       size: 5,
-      lastKey: 0,
 
       move(){
-        if (pressedKeys.left) {
-          this.x -= this.size
-          this.y -= this.size
-          this.lastKey = pressedKeys.left
-        }
-        if (pressedKeys.right) {
-          this.x += this.size
-          this.y -= this.size
-          this.lastKey = pressedKeys.right
-        }
-        if (pressedKeys.up) {
-          this.x -= this.size
-          this.y -= this.size
-          this.lastKey = pressedKeys.up
-        }
-        if (pressedKeys.down) {
-          this.x -= this.size
-          this.y += this.size
-          this.lastKey = pressedKeys.down
+        if(this.circles.length >= 2){
+          let dx = this.circles[1].x - this.circles[0].x
+          let dy = this.circles[1].y - this.circles[0].y
+          const m = Math.sqrt(dx * dx + dy * dy)
+          dx /= m
+          dy /= m
+          this.x = dx - this.size
+          this.y = dx - this.size
         }
       },
 
@@ -142,22 +140,14 @@ export class Snake {
       size: 5,
 
       move(){
-        if (pressedKeys.left) {
-          this.x -= this.size
-          this.y += this.size
-          console.log(this.x, this.y, this.size)
-        }
-        if (pressedKeys.right) {
-          this.x += this.size
-          this.y += this.size
-        }
-        if (pressedKeys.up) {
-          this.x += this.size
-          this.y -= this.size
-        }
-        if (pressedKeys.down) {
-          this.x += this.size
-          this.y += this.size
+        if(this.circles.length >= 2){
+          let dx = this.circles[1].x - this.circles[0].x
+          let dy = this.circles[1].y - this.circles[0].y
+          const m = Math.sqrt(dx * dx + dy * dy)
+          dx /= m
+          dy /= m
+          this.x = dx + this.size
+          this.y = dx - this.size
         }
       },
 

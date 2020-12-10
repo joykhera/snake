@@ -6,13 +6,6 @@ let ctx = canvas.getContext('2d');
 ctx.canvas.width = window.innerWidth * devicePixelRatio;
 ctx.canvas.height = window.innerHeight * devicePixelRatio;
 
-if (ctx.canvas) {
-  ctx.fillStyle = 'lightgrey'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-  console.log("drawn")
-}
-else console.log("no drawn")
-
 import { Snake } from './snake.js'
 import { shift, space, z } from './buttons.js'
 import { fruit } from './fruit.js'

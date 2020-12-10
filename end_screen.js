@@ -19,9 +19,15 @@ ctx.font = '30px Arial'
 ctx.textAlign = 'center'
 ctx.fillText('Score Achieved: ' + score, canvas.width / 4, canvas.height / 3)
 
+
+let mins = 0
+if (Number.isInteger(time / 60)) mins++
+let secs = time - (mins * 60)
+
 ctx.font = '30px Arial'
 ctx.textAlign = 'center'
-ctx.fillText('Survival Duration: ' + time + 's', (3 * canvas.width) / 4, canvas.height / 3)
+if (mins < 1) ctx.fillText('Survival Duration: ' + secs + 's', (3 * canvas.width) / 4, canvas.height / 3)
+else ctx.fillText('Survival Duration: ' + mins + 'm ' + secs + 's', (3 * canvas.width) / 4, canvas.height / 3)
 
 document.querySelector('.button.Play').addEventListener('click', play)
 document.querySelector('.button.Exit').addEventListener('click', exit)
