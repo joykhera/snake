@@ -108,61 +108,61 @@ export class Snake {
   }
 
   eyes(ctx){
-    let eye1 = {
-      x: this.circles[0].x,
-      y: this.circles[0].y,
-      size: 5,
+    // let eye1 = {
+    //   x: this.circles[0].x,
+    //   y: this.circles[0].y,
+    //   size: 5,
 
-      move(){
-        if(this.circles.length >= 2){
-          let dx = this.circles[1].x - this.circles[0].x
-          let dy = this.circles[1].y - this.circles[0].y
-          const m = Math.sqrt(dx * dx + dy * dy)
-          dx /= m
-          dy /= m
-          this.x = dx - this.size
-          this.y = dx - this.size
-        }
-      },
+    //   move(){
+    //     if(this.circles.length >= 2){
+    //       let dx = this.circles[1].x - this.circles[0].x
+    //       let dy = this.circles[1].y - this.circles[0].y
+    //       const m = Math.sqrt(dx * dx + dy * dy)
+    //       dx /= m
+    //       dy /= m
+    //       this.x = dx - this.size
+    //       this.y = dx - this.size
+    //     }
+    //   },
 
-      draw(){
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI)
-        ctx.fillStyle = 'white'
-        ctx.fill()
-        ctx.closePath()
-      },
-    }
+    //   draw(){
+    //     ctx.beginPath()
+    //     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI)
+    //     ctx.fillStyle = 'white'
+    //     ctx.fill()
+    //     ctx.closePath()
+    //   },
+    // }
 
-    let eye2 = {
-      x: this.circles[0].x,
-      y: this.circles[0].y,
-      size: 5,
+    // let eye2 = {
+    //   x: this.circles[0].x,
+    //   y: this.circles[0].y,
+    //   size: 5,
 
-      move(){
-        if(this.circles.length >= 2){
-          let dx = this.circles[1].x - this.circles[0].x
-          let dy = this.circles[1].y - this.circles[0].y
-          const m = Math.sqrt(dx * dx + dy * dy)
-          dx /= m
-          dy /= m
-          this.x = dx + this.size
-          this.y = dx - this.size
-        }
-      },
+    //   move(){
+    //     if(this.circles.length >= 2){
+    //       let dx = this.circles[1].x - this.circles[0].x
+    //       let dy = this.circles[1].y - this.circles[0].y
+    //       const m = Math.sqrt(dx * dx + dy * dy)
+    //       dx /= m
+    //       dy /= m
+    //       this.x = dx + this.size
+    //       this.y = dx - this.size
+    //     }
+    //   },
 
-      draw(){
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI)
-        ctx.fillStyle = 'white'
-        ctx.fill()
-        ctx.closePath()
-      },
-    }
-    eye1.move()
-    eye1.draw()
-    eye2.move()
-    eye2.draw()
+    //   draw(){
+    //     ctx.beginPath()
+    //     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI)
+    //     ctx.fillStyle = 'white'
+    //     ctx.fill()
+    //     ctx.closePath()
+    //   },
+    // }
+    // eye1.move()
+    // eye1.draw()
+    // eye2.move()
+    // eye2.draw()
   }
 
   eat() {
