@@ -29,7 +29,8 @@ function update(){
   z.ability()
   z.move()
   z.draw(ctx)
-  fruit.pos();
+  fruit.pos()
+  fruit.outside()
   fruit.draw(ctx)
   drawEnemies(ctx, snake.num)
   display.score(ctx, snake.num)

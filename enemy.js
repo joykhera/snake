@@ -18,6 +18,13 @@ export class Enemy {
     ctx.drawImage(this.rock, this.x, this.y, this.size, this.size)
   }
 
+  outside(){
+    while((this.x <= 120) && (this.y <= 250)) {
+      this.x = Math.random() * (canvas.width - this.size)
+      this.y = Math.random() * (canvas.height - this.size)
+    }
+  }
+
   randomize () {
     for (const circ of snake.circles) {
       if ((this.x + this.size >= circ.x - circ.size) &&
@@ -42,6 +49,8 @@ export function drawEnemies (ctx, num) {
     while(newEnemy.tooClose) newEnemy.randomize()
   }
   for (const enemy of enemies){
-    enemy.draw(ctx)  
+    enemy.outside()
+    enemy.randomize()
+    enemy.draw(ctx)
   }
 }
