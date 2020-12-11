@@ -2,7 +2,7 @@ import { Circ } from './circle.js'
 import { display } from './display.js'
 import { enemies } from './enemy.js'
 import { fruit } from './fruit.js'
-import { pressedKeys } from './pressedKeys.js'
+import { pressedKeys } from './pressedkeys.js'
 import { z } from './buttons.js'
 
 export class Snake {
