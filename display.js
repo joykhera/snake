@@ -1,4 +1,5 @@
 import { snake } from './index.js'
+import { z } from './buttons.js'
 
 export const display = {
   timeRemaining: 10,
