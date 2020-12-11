@@ -13,7 +13,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height)
 ctx.font = '100px Arial'
 ctx.fillStyle = 'black'
 ctx.textAlign = 'center'
-ctx.fillText("Snake", canvas.width / 2, canvas.height / 4)
+ctx.fillText("Snake", canvas.width / 2, canvas.height / 5)
 
 ctx.font = '30px Arial'
 ctx.textAlign = 'center'
@@ -37,5 +37,5 @@ function exit(){
 }
 
 function play(){
-    location.replace(`snake.html`)
+    location.replace(`index.html`)
 }
