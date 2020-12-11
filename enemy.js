@@ -19,7 +19,7 @@ export class Enemy {
   }
 
   outside(){
-    while((this.x <= 120) && (this.y <= 250)) {
+    while(((this.x <= 120) && (this.y <= canvas.height - 250)) || ((this.x <= 200) && (this.y <= 75))) {
       this.x = Math.random() * (canvas.width - this.size)
       this.y = Math.random() * (canvas.height - this.size)
     }
@@ -31,8 +31,6 @@ export class Enemy {
         (this.x <= circ.x + (2 * circ.size)) &&
         (this.y + this.size >= circ.y) - circ.size &&
         (this.y <= circ.y + (2 * circ.size))) {
-          this.x = Math.random() * (canvas.width - this.size)
-          this.y = Math.random() * (canvas.height - this.size)
           this.tooClose = true;
       }
       this.tooClose = false;
@@ -46,11 +44,13 @@ export function drawEnemies (ctx, num) {
   if (enemies.length < (num - z.splicedNum)){
     const newEnemy = new Enemy()
     enemies.push(newEnemy)
-    while(newEnemy.tooClose) newEnemy.randomize()
+    while(newEnemy.tooClose){
+      this.x = Math.random() * (canvas.width - this.size)
+      this.y = Math.random() * (canvas.height - this.size)
+    }
   }
   for (const enemy of enemies){
     enemy.outside()
-    enemy.randomize()
     enemy.draw(ctx)
   }
 }

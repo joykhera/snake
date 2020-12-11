@@ -63,7 +63,7 @@ export class Snake {
   }
 
   follow() {
-    const target = this.circles[0].size * 2
+    const target = this.circles[0].size * 1.5
     let cidx = 1
     let dist = 0
     for (let i = 1; i < this.path.length; ++i) {
