@@ -38,7 +38,7 @@ export const fruit = {
   },
 
   outside(){
-    while(((this.x <= 120) && (this.y >= canvas.height - 250)) || ((this.x <= 200) && (this.y <= 75))) {
+    while(((this.x <= 120) && (this.y >= canvas.height - 275)) || ((this.x <= 200) && (this.y <= 75))) {
       this.randomize()
     }
   },
