@@ -39,7 +39,7 @@ export const display = {
     ctx.font = '30px Arial'
     ctx.fillText('Time remaining: ' + this.timeRemaining.toFixed(2), 10, 60)
     if (this.timeRemaining <= 0) {
-      location.replace(`end_screen.html?score=${this.circles.length}&time=${display.totTime}&enemies=${z.splicedNum}`);
+      location.replace(`end_screen.html?score=${snake.circles.length}&time=${this.totTime}&enemies=${z.splicedNum}`);
     }
   }
 }
