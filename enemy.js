@@ -6,34 +6,36 @@ const r = new Image()
 r.src = "rock.jpg"
 
 export class Enemy {
-  constructor () {
+  constructor(){
     this.rock = r
     this.x = Math.random() * (canvas.width - fruit.size)
     this.y = Math.random() * (canvas.height - fruit.size)
     this.size = fruit.size
-    this.tooClose = false;
+    this.randomized = false
   }
 
-  draw (ctx) {
+  draw(ctx) {
     ctx.drawImage(this.rock, this.x, this.y, this.size, this.size)
   }
 
   outside(){
-    while(((this.x <= 120) && (this.y <= canvas.height - 250)) || ((this.x <= 200) && (this.y <= 75))) {
+    while(((this.x <= 120) && (this.y >= canvas.height - 275)) || ((this.x <= 210) && (this.y <= 75))) {
       this.x = Math.random() * (canvas.width - this.size)
       this.y = Math.random() * (canvas.height - this.size)
     }
   }
 
-  randomize () {
+  randomize() {
     for (const circ of snake.circles) {
-      if ((this.x + this.size >= circ.x - circ.size) &&
-        (this.x <= circ.x + (2 * circ.size)) &&
-        (this.y + this.size >= circ.y) - circ.size &&
-        (this.y <= circ.y + (2 * circ.size))) {
-          this.tooClose = true;
+      while ((this.x >= circ.x - 100) &&
+      (this.x <= circ.x + 100) &&
+      (this.y >= circ.y - 100) &&
+      (this.y <= circ.y + 100)) {
+        this.x = Math.random() * (canvas.width - this.size)
+        this.y = Math.random() * (canvas.height - this.size)
+        this.randomized = true
       }
-      this.tooClose = false;
+      this.randomized = false
     }
   }  
 }
@@ -44,11 +46,11 @@ export function drawEnemies (ctx, num) {
   if (enemies.length < (num - z.splicedNum)){
     const newEnemy = new Enemy()
     enemies.push(newEnemy)
-    while(newEnemy.tooClose){
-      this.x = Math.random() * (canvas.width - this.size)
-      this.y = Math.random() * (canvas.height - this.size)
-    }
+    newEnemy.randomize()
+    while (newEnemy.randomized) newEnemy.randomize()
+    newEnemy.outside()
   }
+
   for (const enemy of enemies){
     enemy.outside()
     enemy.draw(ctx)

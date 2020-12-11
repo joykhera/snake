@@ -32,19 +32,18 @@ export const fruit = {
     }
   },
 
-  outside(){
-    while(((this.x <= 120) && (this.y <= canvas.height - 250)) || ((this.x <= 200) && (this.y <= 75))) {
-      this.x = Math.random() * (canvas.width - this.size)
-      this.y = Math.random() * (canvas.height - this.size)
-    }
-  },
-
-  randomize () {
+  randomize(){
     this.x = Math.random() * (canvas.width - this.size)
     this.y = Math.random() * (canvas.height - this.size)
   },
 
-  pos () {
+  outside(){
+    while(((this.x <= 120) && (this.y >= canvas.height - 250)) || ((this.x <= 200) && (this.y <= 75))) {
+      this.randomize()
+    }
+  },
+
+  pos(){
     for (let i = 0; i < enemies.length; i++) {
       if ((this.x + this.size >= enemies[i].x) &&
         (this.x <= enemies[i].x + enemies[i].size) &&

@@ -169,18 +169,18 @@ export const z = {
         if (distX <= (enemies[i].size / 2)) this.collisionCheck1 = true
         if (distY <= (enemies[i].size / 2)) this.collisionCheck1 = true
 
-        let centerEnemyX = distX - (enemies[i].size / 2);
-        let centerEnemyY = distY - (enemies[i].size / 2);
+        let centerX = distX - (enemies[i].size / 2);
+        let centerY = distY - (enemies[i].size / 2);
 
-        if ((centerEnemyX * centerEnemyX) + (centerEnemyY * centerEnemyY) < 
+        if ((centerX * centerX) + (centerY * centerY) < 
         (this.abilitySize * this.abilitySize)) this.collisionCheck2 = true
         else this.collisionCheck2 = false
 
-        if (this.collisionCheck1 && this.collisionCheck2) {
+        if (this.collisionCheck1 && this.collisionCheck2){
           enemies.splice(i, 1)
-          --i
+          i--
           this.splicedNum++
-          console.log("hit")
+          console.log("splice")
         }
       }
     }

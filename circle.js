@@ -5,6 +5,7 @@ export class Circ {
     this.y = canvas.height / 2
     this.color = "black"
     this.colors = []
+    this.colorAngle = Math.random() * 359 + 1
     this.size = 20
     this.normSize = 20
     this.spaceSize = 10

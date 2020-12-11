@@ -29,6 +29,7 @@ function update(){
   z.ability()
   z.move()
   z.draw(ctx)
+  z.abilityCollision()
   fruit.pos()
   fruit.outside()
   fruit.draw(ctx)

@@ -20,8 +20,7 @@ ctx.textAlign = 'center'
 ctx.fillText('Score Achieved: ' + score, canvas.width / 4, canvas.height / 3)
 
 
-let mins = 0
-if (Number.isInteger(time / 60)) mins++
+let mins = Math.floor(60 % time)
 let secs = time - (mins * 60)
 
 ctx.font = '30px Arial'
