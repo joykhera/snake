@@ -12,6 +12,7 @@ export class Enemy {
     this.y = Math.random() * (canvas.height - fruit.size)
     this.size = fruit.size
     this.randomized = false
+    this.collision = false
   }
 
   draw(ctx) {

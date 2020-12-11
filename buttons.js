@@ -100,8 +100,6 @@ export const z = {
   abilityY: canvas.height / 2,
   abilitySize: 0,
   grow: false,
-  collisionCheck1: false,
-  collisionCheck2: false,
   splicedNum: 0,
 
   set(){
@@ -160,29 +158,46 @@ export const z = {
 
   abilityCollision(){
     if(this.grow){
-      for (let i = 0; i < enemies.length; i++){
-        let distX = Math.abs(this.abilityX - enemies[i].x - enemies[i].size / 2);
-        let distY = Math.abs(this.abilityY - enemies[i].y - enemies[i].size / 2);
+      for (const enemy of enemies){
+        let distX = Math.abs(this.abilityX - enemy.x - enemy.size / 2);
+        let distY = Math.abs(this.abilityY - enemy.y - enemy.size / 2);
 
-        if (distX > (enemies[i].size / 2) + this.abilitySize) this.collisionCheck1 = false
-        if (distY > (enemies[i].size / 2) + this.abilitySize) this.collisionCheck1 = false
-        if (distX <= (enemies[i].size / 2)) this.collisionCheck1 = true
-        if (distY <= (enemies[i].size / 2)) this.collisionCheck1 = true
-
-        let centerX = distX - (enemies[i].size / 2);
-        let centerY = distY - (enemies[i].size / 2);
-
-        if ((centerX * centerX) + (centerY * centerY) < 
-        (this.abilitySize * this.abilitySize)) this.collisionCheck2 = true
-        else this.collisionCheck2 = false
-
-        if (this.collisionCheck1 && this.collisionCheck2){
-          enemies.splice(i, 1)
-          i--
-          this.splicedNum++
-          console.log("splice")
+        if (distX > (enemy.size / 2) + this.abilitySize) {
+          enemy.collision = false;
+          continue;
+        }  
+        if (distY > (enemy.size / 2) + this.abilitySize) {
+          enemy.collision = false;
+          continue;
         }
-      }
+        if (distX <= (enemy.size / 2)) {
+          enemy.collision = true;
+          continue;
+        }
+        if (distY <= (enemy.size / 2)) {
+          enemy.collision = true;
+          continue;
+        }
+
+        let centerX = distX - (enemy.size / 2);
+        let centerY = distY - (enemy.size / 2);
+
+        if ((centerX * centerX) + (centerY * centerY) < (this.abilitySize * this.abilitySize)){
+          enemy.collision = true;
+          continue;
+        }
+      }  
     }
+  },
+
+  abitiltyCollisionCheck(){
+    for (let i = 0; i < enemies.length; i++){
+      if (enemies[i].collision){
+        enemies.splice(i, 1)
+        i--
+        this.splicedNum++
+        console.log("splice")
+      }
+    }  
   },
 }
