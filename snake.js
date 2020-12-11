@@ -82,8 +82,9 @@ export class Snake {
     if(this.eating){
       this.circles[this.circles.length - 1].colorAngle = Math.random() * 359 + 1
       this.circles[this.circles.length - 1].color = `hsl(${this.circles[this.circles.length - 1].colorAngle}, 100%, 50%)`
-      while ((this.circles[this.circles.length - 1].colorAngle <= this.circles[this.circles.length - 2].colorAngle + 60) &&
-      ((this.circles[this.circles.length - 1].colorAngle >= this.circles[this.circles.length - 2].colorAngle - 60))){
+      while (((this.circles[this.circles.length - 1].colorAngle <= this.circles[this.circles.length - 2].colorAngle + 60) &&
+      ((this.circles[this.circles.length - 1].colorAngle >= this.circles[this.circles.length - 2].colorAngle - 60))) ||
+      (Math.abs(this.circles[this.circles.length - 1].colorAngle - this.circles[this.circles.length - 2].colorAngle) > 330)){
         this.circles[this.circles.length - 1].colorAngle = Math.random() * 359 + 1
       }
     }  
