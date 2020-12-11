@@ -1,4 +1,4 @@
-import { pressedKeys } from './pressedKeys.js'
+import { pressedKeys } from './input.js'
 import { snake } from './index.js'
 import { enemies } from './enemy.js'
 
