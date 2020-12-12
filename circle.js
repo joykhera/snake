@@ -7,11 +7,10 @@ export class Circ {
     this.colors = []
     this.colorAngle = Math.random() * 359 + 1
     this.size = 20
-    this.normSize = 20
-    this.spaceSize = 10
   }
 
   draw(ctx){
+    this.colorAngle = Math.random() * 359 + 1
     ctx.beginPath()
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI)
     ctx.fillStyle = this.color

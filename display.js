@@ -5,6 +5,12 @@ export const display = {
   timeRemaining: 10,
   totTime: 0,
 
+  update(ctx, num){
+    display.score(ctx, num)
+    display.color(ctx)
+    display.time(ctx)
+  },
+
   score (ctx, num) {
     ctx.font = '30px Arial'
     ctx.fillStyle = 'black'

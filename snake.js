@@ -92,7 +92,7 @@ export class Snake {
 
   draw(ctx){
     for (let i = this.circles.length - 1; i >= 0; i--) {
-      this.circles[i].size = this.small ? 10 : 20
+      this.circles[i].size = this.small ? (canvas.width * 0.005) : (canvas.width * 0.01);
       this.circles[i].draw(ctx)
       if (this.circles.length >= 2 && i >= 1){
         ctx.beginPath();

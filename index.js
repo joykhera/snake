@@ -13,6 +13,7 @@ import { drawEnemies } from './enemy.js'
 import { display } from './display.js'
 export const snake = new Snake()
 
+fruit.set();
 shift.set();
 space.set();
 z.set();
@@ -22,22 +23,12 @@ function update(){
   ctx.fillStyle = 'lightgrey'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   snake.update(ctx)
-  shift.move(snake.num)
-  shift.draw(ctx)
-  space.move()
-  space.draw(ctx)
-  z.ability()
-  z.move()
-  z.draw(ctx)
-  z.abilityCollision()
-  z.abitiltyCollisionCheck()
-  fruit.pos()
-  fruit.outside()
-  fruit.draw(ctx)
+  shift.update(snake.num ,ctx)
+  space.update(snake.num ,ctx)
+  z.update(ctx)
+  fruit.update(ctx)
   drawEnemies(ctx, snake.num)
-  display.score(ctx, snake.num)
-  display.color(ctx)
-  display.time(ctx)
+  display.update(ctx, snake.num)
   window.requestAnimationFrame(update)
 }
 update()

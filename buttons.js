@@ -17,6 +17,11 @@ export const shift = {
     this.moverY = this.y
   },
 
+  update(num, ctx){
+    this.move(num)
+    this.draw(ctx)
+  },
+
   move (num) {
     this.moverSpeed = 5 / (num / 2)
     if (pressedKeys.shift && this.moverSizeY >= this.borderSize && this.moverY >= this.y - this.moverSizeY) {
@@ -57,6 +62,11 @@ export const space = {
   set(){
     this.y = shift.y
     this.moverY = this.y
+  },
+
+  update(num, ctx){
+    this.move(num)
+    this.draw(ctx)
   },
 
   move () {
@@ -107,12 +117,20 @@ export const z = {
     this.moverY = this.y
   },
 
+  update(ctx){
+    this.ability()
+    this.move()
+    this.draw(ctx)
+    this.abilityCollision()
+    this.abitiltyCollisionCheck()
+  },
+
   ability(){
     if (!this.reset && snake.eating) this.count++
     this.abilityCounter = this.count % 6
   },
 
-  move() {
+  move(){
     this.moverY = (this.y + this.sizeY) - (this.sizeY * this.abilityCounter / 5 )
     this.moverSizeY = (this.sizeY) * this.abilityCounter / 5
 

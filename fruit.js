@@ -1,4 +1,5 @@
 import { enemies } from './enemy.js'
+
 const imgs = {
   apple: new Image(),
   banana: new Image(),
@@ -7,6 +8,7 @@ const imgs = {
 imgs.apple.src = 'https://cdn2.vectorstock.com/i/1000x1000/56/11/fresh-red-apple-transparent-background-vector-22385611.jpg'
 imgs.banana.src = 'https://toppng.com/uploads/preview/banana-png-image-banana-with-no-background-11563269485bxfxxdzfxt.png'
 imgs.orange.src = 'https://p1.hiclipart.com/preview/278/342/572/fruit-orange-fruit-png-clipart.jpg'
+
 export const fruit = {
   apple: imgs.apple,
   banana: imgs.banana,
@@ -17,7 +19,17 @@ export const fruit = {
   choose: 0,
   chosen: new Image(),
 
-  chooseFruit () {
+  set(){
+    this.size = canvas.width * 0.02
+  },
+
+  update(ctx){
+    this.pos()
+    this.outside()
+    this.draw(ctx)
+  },
+
+  chooseFruit(){
     this.choose = Math.round(Math.random() * 2)
     switch (this.choose) {
       case 0:
@@ -38,7 +50,7 @@ export const fruit = {
   },
 
   outside(){
-    while(((this.x <= 120) && (this.y >= canvas.height - 275)) || ((this.x <= 200) && (this.y <= 75))) {
+    while(((this.x <= 150) && (this.y >= canvas.height - 285)) || ((this.x <= 300) && (this.y <= 75))) {
       this.randomize()
     }
   },
