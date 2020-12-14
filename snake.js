@@ -88,13 +88,13 @@ export class Snake{
       let prevCirc = this.circles[this.circles.length - 2]
       
       thisCirc.colorAngle = Math.random() * 359 + 1
-      while (((thisCirc.colorAngle <= prevCirc.colorAngle + 60) &&
-      (thisCirc.colorAngle >= prevCirc.colorAngle - 60)) ||
-      (Math.abs(thisCirc.colorAngle - prevCirc.colorAngle) > 330)){
+      while (thisCirc.colorAngle <= prevCirc.colorAngle + 60 &&
+      thisCirc.colorAngle >= prevCirc.colorAngle - 60 ||
+      Math.abs(thisCirc.colorAngle - prevCirc.colorAngle) > 330){
         thisCirc.colorAngle = Math.random() * 359 + 1
       }
       thisCirc.color = `hsl(${thisCirc.colorAngle}, 100%, 50%)`
-      console.log(thisCirc.colorAngle)
+      console.log(thisCirc.color, thisCirc.colorAngle, prevCirc.color, prevCirc.colorAngle)
     }  
   }
 
