@@ -10,14 +10,22 @@ export const pressedKeys = {
   down_handler (key = '') {
     if (key === ' ') key = 'Space'
     this[key.replace('Arrow', '').toLowerCase()] = true
+    this[key.replace("w","up").toLowerCase()] = true
+    this[key.replace("a","left").toLowerCase()] = true
+    this[key.replace("s","down").toLowerCase()] = true
+    this[key.replace("d","right").toLowerCase()] = true
     this[key.replace('shift').toLowerCase()] = true
-    this[key.replace('KeyZ').toLowerCase()] = true
+    this[key.replace('z').toLowerCase()] = true
   },
   up_handler (key = '') {
     if (key === ' ') key = 'Space'
     this[key.replace('Arrow', '').toLowerCase()] = false
+    this[key.replace("w","up").toLowerCase()] = false
+    this[key.replace("a","left").toLowerCase()] = false
+    this[key.replace("s","down").toLowerCase()] = false
+    this[key.replace("d","right").toLowerCase()] = false
     this[key.replace('shift').toLowerCase()] = false
-    this[key.replace('KeyZ').toLowerCase()] = false
+    this[key.replace('z').toLowerCase()] = false
   }
 }
 

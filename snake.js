@@ -5,8 +5,8 @@ import { fruit } from './fruit.js'
 import { pressedKeys } from './input.js'
 import { z } from './buttons.js'
 
-export class Snake {
-  constructor () {
+export class Snake{
+  constructor(){
     this.num = 1
     this.speed = 5
     this.dir = 0
@@ -28,7 +28,7 @@ export class Snake {
     }
   }
 
-  update (ctx) {
+  update (ctx){
     this.slow = pressedKeys.shift
     this.small = pressedKeys.space
     this.move()
@@ -41,7 +41,7 @@ export class Snake {
     this.ability(ctx)
   }
 
-  direction() {
+  direction(){
     const vec = { x: 0, y: 0 }
     if (pressedKeys.right) vec.x += 1
     if (pressedKeys.left) vec.x -= 1
@@ -55,7 +55,7 @@ export class Snake {
     return vec
   }
 
-  move() {
+  move(){
     const speed = this.slow ? this.speed / 2 : this.speed
     this.dir = this.direction()
     this.circles[0].x += speed * this.dir.x
@@ -64,7 +64,7 @@ export class Snake {
     this.path.unshift(pos)
   }
 
-  follow() {
+  follow(){
     const target = this.circles[0].size * 1.5
     let cidx = 1
     let dist = 0
@@ -84,14 +84,17 @@ export class Snake {
 
   color(){
     if(this.eating){
-      this.circles[this.circles.length - 1].colorAngle = Math.random() * 359 + 1
-      this.circles[this.circles.length - 1].color = `hsl(${this.circles[this.circles.length - 1].colorAngle}, 100%, 50%)`
-      while (((this.circles[this.circles.length - 1].colorAngle <= this.circles[this.circles.length - 2].colorAngle + 60) &&
-      ((this.circles[this.circles.length - 1].colorAngle >= this.circles[this.circles.length - 2].colorAngle - 60))) ||
-      (Math.abs(this.circles[this.circles.length - 1].colorAngle - this.circles[this.circles.length - 2].colorAngle) > 330)){
-        this.circles[this.circles.length - 1].colorAngle = Math.random() * 359 + 1
+      let thisCirc = this.circles[this.circles.length - 1]
+      let prevCirc = this.circles[this.circles.length - 2]
+      
+      thisCirc.colorAngle = Math.random() * 359 + 1
+      while (((thisCirc.colorAngle <= prevCirc.colorAngle + 60) &&
+      (thisCirc.colorAngle >= prevCirc.colorAngle - 60)) ||
+      (Math.abs(thisCirc.colorAngle - prevCirc.colorAngle) > 330)){
+        thisCirc.colorAngle = Math.random() * 359 + 1
       }
-      //console.log(this.circles[this.circles.length - 1].colorAngle)
+      thisCirc.color = `hsl(${thisCirc.colorAngle}, 100%, 50%)`
+      console.log(thisCirc.colorAngle)
     }  
   }
 
@@ -139,7 +142,7 @@ export class Snake {
       draw(eye2.x,eye2.y)
   }
 
-  eat() {
+  eat(){
     if ((this.circles[0].x + this.circles[0].size >= fruit.x) &&
             (this.circles[0].x - this.circles[0].size <= fruit.x + fruit.size) &&
             (this.circles[0].y + this.circles[0].size >= fruit.y) &&
@@ -157,7 +160,7 @@ export class Snake {
     }
   }
 
-  collision () {
+  collision(){
     for (const circle of this.circles) {
       circle.collision()
       for (const enemy of enemies) {
