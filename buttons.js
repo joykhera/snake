@@ -32,9 +32,7 @@ export const shift = {
       this.moverY -= this.moverSpeed
     }
 
-    if (this.moverSizeY <= this.borderSize) {
-      pressedKeys.shift = false
-    }
+    if (this.moverSizeY <= this.borderSize) pressedKeys.shift = false
   },
 
   draw (ctx) {
@@ -79,9 +77,7 @@ export const space = {
       this.moverY -= this.moverSpeed
     }
 
-    if (this.moverSizeY <= this.borderSize) {
-      pressedKeys.space = false
-    }
+    if (this.moverSizeY <= this.borderSize) pressedKeys.space = false
   },
 
   draw (ctx) {

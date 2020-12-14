@@ -17,6 +17,7 @@ fruit.set();
 shift.set();
 space.set();
 z.set();
+display.set();
 setInterval(display.calcTotTime.bind(display), 1000);
 
 function update(){

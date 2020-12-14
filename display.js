@@ -4,6 +4,7 @@ import { z } from './buttons.js'
 export const display = {
   timeRemaining: 10,
   totTime: 0,
+  size: 0,
 
   update(ctx, num){
     display.score(ctx, num)
@@ -11,8 +12,12 @@ export const display = {
     display.time(ctx)
   },
 
+  set(){
+    this.size = canvas.width / 50
+  },
+
   score (ctx, num) {
-    ctx.font = '30px Arial'
+    ctx.font = `${this.size} px Arial`
     ctx.fillStyle = 'black'
     ctx.fillText('Score: ' + num, 10, 30)
   },
@@ -43,7 +48,6 @@ export const display = {
   },
 
   time (ctx) {
-    ctx.font = '30px Arial'
     ctx.fillText('Time remaining: ' + this.timeRemaining.toFixed(2), 10, 60)
     if (this.timeRemaining <= 0) {
       location.replace(`end_screen.html?score=${snake.circles.length}&time=${this.totTime}&enemies=${z.splicedNum}`);

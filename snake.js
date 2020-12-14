@@ -9,6 +9,9 @@ export class Snake {
   constructor () {
     this.num = 1
     this.speed = 5
+    this.dir = 0
+    this.dirX = 1
+    this.dirY = 0
     this.slow = false
     this.small = false
     this.circles = []
@@ -32,6 +35,7 @@ export class Snake {
     this.color()
     this.follow()
     this.draw(ctx)
+    this.eyes(ctx)
     this.collision()
     this.eat()
     this.ability(ctx)
@@ -53,9 +57,9 @@ export class Snake {
 
   move() {
     const speed = this.slow ? this.speed / 2 : this.speed
-    const dir = this.direction()
-    this.circles[0].x += speed * dir.x
-    this.circles[0].y += speed * dir.y
+    this.dir = this.direction()
+    this.circles[0].x += speed * this.dir.x
+    this.circles[0].y += speed * this.dir.y
     const pos = { x: this.circles[0].x, y: this.circles[0].y }
     this.path.unshift(pos)
   }
@@ -87,6 +91,7 @@ export class Snake {
       (Math.abs(this.circles[this.circles.length - 1].colorAngle - this.circles[this.circles.length - 2].colorAngle) > 330)){
         this.circles[this.circles.length - 1].colorAngle = Math.random() * 359 + 1
       }
+      //console.log(this.circles[this.circles.length - 1].colorAngle)
     }  
   }
 
@@ -104,6 +109,34 @@ export class Snake {
         ctx.closePath();
       }
     }
+  }
+
+  eyes(ctx){
+    const size = this.circles[0].size / 4
+    if(this.dir.x !== 0 || this.dir.y !== 0){
+      this.dirX = this.dir.x
+      this.dirY = this.dir.y
+    }
+
+    let eye1 = {
+      x: this.circles[0].x + (this.dirX * size) + (-this.dirY * size),
+      y: this.circles[0].y + (this.dirY * size) + (this.dirX * size)
+    }
+    let eye2 = {
+      x: this.circles[0].x + (this.dirX * size) + (this.dirY * size),
+      y: this.circles[0].y + (this.dirY * size) + (-this.dirX * size)
+    }
+
+      function draw(x,y){
+        ctx.beginPath()
+        ctx.arc(x, y, size, 0, 2 * Math.PI)
+        ctx.fillStyle = 'white'
+        ctx.fill()
+        ctx.closePath()
+      }
+
+      draw(eye1.x,eye1.y)
+      draw(eye2.x,eye2.y)
   }
 
   eat() {
