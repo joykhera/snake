@@ -12,17 +12,19 @@ let canvas = (() => {
     _ = document.getElementById('canvas')
     return _ })()
 let ctx = canvas.getContext('2d');
-ctx.canvas.width = window.innerWidth * devicePixelRatio;
-ctx.canvas.height = window.innerHeight * devicePixelRatio;
 
 document.querySelector('.button.Play').addEventListener('click', play)
 document.querySelector('.button.Exit').addEventListener('click', exit)
 
-if (mins < 1) ctx.fillText('Survival Duration: ' + secs + 's', (5 * canvas.width) / 6, canvas.height / 3)
-else ctx.fillText('Survival Duration: ' + mins + 'm ' + secs + 's', (3 * canvas.width) / 4, canvas.height / 3)
+// if (mins < 1) ctx.fillText('Survival Duration: ' + secs + 's', (5 * canvas.width) / 6, canvas.height / 3)
+// else ctx.fillText('Survival Duration: ' + mins + 'm ' + secs + 's', (3 * canvas.width) / 4, canvas.height / 3)
 
 
 function draw() {
+
+    // check window size again
+    ctx.canvas.width = window.innerWidth * devicePixelRatio
+    ctx.canvas.height = window.innerHeight * devicePixelRatio
 
     ctx.fillStyle = 'LightGray'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -37,7 +39,7 @@ function draw() {
     ctx.fillText('Enemies destroyed: ' + enemies,canvas.width / 2, canvas.height / 3)
     ctx.fillText('Survival Duration: ' + duration, (3 * canvas.width) / 4, canvas.height / 3)
 
-    
+    requestAnimationFrame(draw)
 }
 draw()
 
