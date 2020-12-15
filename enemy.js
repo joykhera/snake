@@ -20,7 +20,7 @@ export class Enemy {
   }
 
   outside(){
-    while(((this.x <= 120) && (this.y >= canvas.height - 275)) || ((this.x <= 210) && (this.y <= 75))) {
+    while(((this.x <= 150) && (this.y >= canvas.height - 285)) || ((this.x <= 300) && (this.y <= 75))) {
       this.x = Math.random() * (canvas.width - this.size)
       this.y = Math.random() * (canvas.height - this.size)
     }

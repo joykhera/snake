@@ -88,8 +88,8 @@ export class Snake{
       let prevCirc = this.circles[this.circles.length - 2]
       
       thisCirc.colorAngle = Math.random() * 359 + 1
-      while (thisCirc.colorAngle <= prevCirc.colorAngle + 60 &&
-      thisCirc.colorAngle >= prevCirc.colorAngle - 60 ||
+      while (thisCirc.colorAngle <= prevCirc.colorAngle + 40 &&
+      thisCirc.colorAngle >= prevCirc.colorAngle - 40 ||
       Math.abs(thisCirc.colorAngle - prevCirc.colorAngle) > 330){
         thisCirc.colorAngle = Math.random() * 359 + 1
       }
