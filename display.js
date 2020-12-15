@@ -5,6 +5,7 @@ export const display = {
   timeRemaining: 10,
   totTime: 0,
   size: 0,
+  replaced: false,
 
   update(ctx, num){
     display.score(ctx, num)
@@ -49,8 +50,9 @@ export const display = {
 
   time (ctx) {
     ctx.fillText('Time remaining: ' + this.timeRemaining.toFixed(2), 10, 60)
-    if (this.timeRemaining <= 0) {
-      location.replace(`end_screen.html?score=${snake.circles.length}&time=${this.totTime}&enemies=${z.splicedNum}`);
+    if (this.timeRemaining <= 0 && !this.replaced) {
+      location.replace(`end_screen.html?score=${snake.circles.length}&time=${this.totTime}&enemies=${z.splicedNum}`)
+      this.replaced = true
     }
   }
 }

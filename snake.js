@@ -19,6 +19,7 @@ export class Snake{
     this.colors = []
     this.eating = false
     this.abilitySize = 0
+    this.replaced = false
 
     for (let i = 0; i < this.num; i++) {
       const circle = new Circ()
@@ -167,8 +168,11 @@ export class Snake{
         if ((circle.x <= enemy.x + enemy.size)
         && (circle.x >= enemy.x - circle.size)
         && (circle.y <= enemy.y + enemy.size)
-        && (circle.y >= enemy.y - circle.size)) 
-        location.replace(`end_screen.html?score=${this.circles.length}&time=${display.totTime}&enemies=${z.splicedNum}`);
+        && (circle.y >= enemy.y - circle.size)
+        && (!this.replaced)){
+          this.replaced = true
+        location.replace(`end_screen.html?score=${this.circles.length}&time=${display.totTime}&enemies=${z.splicedNum}`)
+        }
       }
     }
   }
