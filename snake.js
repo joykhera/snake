@@ -95,7 +95,6 @@ export class Snake{
         thisCirc.colorAngle = Math.random() * 359 + 1
       }
       thisCirc.color = `hsl(${thisCirc.colorAngle}, 100%, 50%)`
-      console.log(thisCirc.color, thisCirc.colorAngle, prevCirc.color, prevCirc.colorAngle)
     }  
   }
 
