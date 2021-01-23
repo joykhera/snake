@@ -150,7 +150,8 @@ export class Snake{
       this.eating = true
       display.reset(this.num)
       this.num += 1
-      this.speed += (this.speed - 10) / this.num
+      this.speed += 0.1
+      console.log(this.speed)
       fruit.chooseFruit()
       fruit.randomize()
       this.circles.push(new Circ())
