@@ -5,9 +5,9 @@ const imgs = {
   banana: new Image(),
   orange: new Image()
 }
-imgs.apple.src = 'https://media.discordapp.net/attachments/437060682693738497/802404246707240991/apple.jpg?width=417&height=475'
-imgs.banana.src = 'https://toppng.com/uploads/preview/banana-png-image-banana-with-no-background-11563269485bxfxxdzfxt.png'
-imgs.orange.src = 'https://p1.hiclipart.com/preview/278/342/572/fruit-orange-fruit-png-clipart.jpg'
+imgs.apple.src = 'apple.png'
+imgs.banana.src = 'banana.png'
+imgs.orange.src = 'orange.png'
 
 export const fruit = {
   apple: imgs.apple,
